@@ -6,7 +6,7 @@ import (
 
 type Like struct {
 	gorm.Model
-	// Id       int
+	ID     int    `json:"id"`
 	PostId int    `json:"parent_id" validate:"required"`
 	Type   string `json:"type" validate:"required"`
 }

@@ -1,5 +1,7 @@
-package cmd
+package main
+
+import "blog/pkg/migrations"
 
 func main() {
-	Migrate.Migrate()
+	migrations.Migrate()
 }

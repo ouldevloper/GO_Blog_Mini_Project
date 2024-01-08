@@ -6,7 +6,7 @@ import (
 
 type Comment struct {
 	gorm.Model
-	// Id      int
+	ID      int    `json:"id"`
 	PostID  int    `json:"post_id" validate:"required"`
 	Comment string `json:"comment" validate:"required"`
 }

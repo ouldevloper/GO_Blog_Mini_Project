@@ -1,11 +1,11 @@
 package migrations
 
 import (
-	config "blog/pkg/Config"
+	"blog/pkg/config"
 	"blog/pkg/models"
 )
 
-go func Migrate() {
+func Migrate() {
 	db := config.GetCnx()
 	db.AutoMigrate(models.Post{}, models.Comment{}, models.Like{})
 }
