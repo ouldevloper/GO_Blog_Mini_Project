@@ -44,7 +44,9 @@ func (repos *PostRepository) Search(search string, page int, offset int) []model
 	var posts []models.Post
 	config.GetCnx().
 		Model(models.Post{}).
-		Preload("Comments", "Likes").
+		Raw("select count(*) from likes where likes.post_id=id").
+		Preload("Comments").
+		Preload("Likes").
 		Where("title like ? ", search+"%").
 		Or("id = ?", search).
 		Or("description like ?", search+"%").

@@ -9,4 +9,5 @@ type Comment struct {
 	ID      int    `json:"id"`
 	PostID  int    `json:"post_id" validate:"required"`
 	Comment string `json:"comment" validate:"required"`
+	User    *User  `json:"user"`
 }

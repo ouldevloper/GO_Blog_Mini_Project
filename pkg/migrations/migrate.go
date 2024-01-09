@@ -7,5 +7,5 @@ import (
 
 func Migrate() {
 	db := config.GetCnx()
-	db.AutoMigrate(models.Post{}, models.Comment{}, models.Like{})
+	db.AutoMigrate(models.User{}, models.Post{}, models.Comment{}, models.Like{})
 }
