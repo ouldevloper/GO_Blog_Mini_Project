@@ -46,22 +46,21 @@ func GetPostById(c *gin.Context) {
 }
 
 func DeletePost(c *gin.Context) {
-	fmt.Println("params", c.Request.Body)
 	id, _ := strconv.Atoi(c.Param("PostId"))
 	repos.Delete(id)
-	utils.Success(c, nil, http.StatusOK)
+	utils.Success(c, c.Request.Body, http.StatusOK)
 }
 
 func UpdatePost(c *gin.Context) {
-
 	var post models.Post
 	utils.ParseBody(c.Request, &post)
 	repos.Update(post)
-	utils.Success(c, nil, http.StatusOK)
+	utils.Success(c, post, http.StatusOK)
 }
 
 func SearchForPosts(c *gin.Context) {
 	search := c.Param("search")
+	fmt.Print("Search: ", search)
 	page, _ := strconv.Atoi(c.Param("Page"))
 	limit, _ := strconv.Atoi(c.Param("Limit"))
 	posts := repos.Search(search, page, limit)
