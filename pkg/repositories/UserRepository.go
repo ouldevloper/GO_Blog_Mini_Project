@@ -41,7 +41,7 @@ func (repos *UserRepository) Register(user *models.User) {
 	config.GetCnx().Create(&user)
 }
 
-func (repos *UserRepository) login(username string, password string) string {
+func (repos *UserRepository) Login(username string, password string) string {
 	var user *models.User
 	config.GetCnx().
 		Model(models.User{}).
@@ -54,7 +54,7 @@ func (repos *UserRepository) login(username string, password string) string {
 	if user.Password != crypt(password) {
 		panic("Invalid Password")
 	}
-	token := generateToken(user.Username)
+	return generateToken(user.Username)
 }
 
 func (repos *UserRepository) ResetPassword(old string, newPass string) {

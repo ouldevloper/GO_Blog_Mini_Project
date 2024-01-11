@@ -16,3 +16,10 @@ func Register(c *gin.Context) {
 	uRpos.Register(&user)
 	c.JSON(200, user)
 }
+
+func Login(c *gin.Context) {
+	var auth models.Auth
+	utils.ParseBody(c.Request, &auth)
+	token := uRpos.Login(auth.UserName, auth.Password)
+	c.JSON(200, map[string]string{"token": token})
+}
